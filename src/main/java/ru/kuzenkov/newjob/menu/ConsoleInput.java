@@ -20,22 +20,15 @@ public class ConsoleInput implements Input {
      */
     public String ask(String question) {
         System.out.println(question);
-        System.out.println("Введите число. Если необходимо ввести +- бесконечность - введите +-infinity");
-//        if (this.input.nextLine() == "infinity" || this.input.nextLine() == "+ infinity" || this.input.nextLine() == "+infinity") {
-//            return Double.POSITIVE_INFINITY;
-//        }
-//        if (this.input.nextLine() == "- infinity" || this.input.nextLine() == "-infinity") {
-//            return Double.NEGATIVE_INFINITY;
-//        }
-//        double result = 0;
-//        try {
-//            return Double.valueOf(this.input.nextLine());
-//        } catch (NumberFormatException nfe) {
-//            System.out.println("Необходимо ввести корректное значение.");
-//        }
         return this.input.nextLine();
     }
 
+    /**
+     * Работа с консолью. Выбор пунктов меню.
+     * @param question вопрос от программы.
+     * @param range диапозон допустимых значений команд.
+     * @return выбраный пункт меню.
+     */
     public int ask(String question, int[] range) {
         System.out.print(question);
         int key = Integer.valueOf(this.input.nextLine());
@@ -50,5 +43,27 @@ public class ConsoleInput implements Input {
             throw new MenuOutException("Out of range.");
         }
         return key;
+    }
+
+    /**
+     * Работа с консолью. Ввод значений интервалов.
+     * @param question1 вопрос от программы.
+     * @param question2 вопрос от программы.
+     * @return ввод пользователя в консоль. (Только типа double).
+     */
+    public double ask(String question1, String question2) {
+        System.out.println(question1);
+        System.out.println(question2);
+        String value = this.input.nextLine();
+        if (value.equals("infinity")
+                || value.equals("+ infinity")
+                || value.equals("+infinity")) {
+            return Double.POSITIVE_INFINITY;
+        }
+        if (value.equals("- infinity")
+                || value.equals("-infinity")) {
+            return Double.NEGATIVE_INFINITY;
+        }
+        return Double.valueOf(value);
     }
 }

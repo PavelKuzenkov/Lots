@@ -197,5 +197,4 @@ class SetList {
             return this.findNearestPointToPoint(x, crossSet);
         }
     }
-
 }

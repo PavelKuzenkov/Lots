@@ -122,8 +122,8 @@ public class Menu {
          */
         public void execute(Input input, Aggregator aggregator) {
             System.out.println("---------- Добавление нового интервала в текущее множество -------------");
-            double a = Double.valueOf(input.ask("Введите начало интервала: "));
-            double b = Double.valueOf(input.ask("Введите конец интервала: "));
+            double a = input.ask("Начало интервала: ", "Если необходимо ввести +- бесконечность - введите +-infinity. ");
+            double b = input.ask("Конец интервала: ", "Если необходимо ввести +- бесконечность - введите +-infinity. ");
             aggregator.newInterval(a, b);
             System.out.println();
         }
@@ -217,7 +217,7 @@ public class Menu {
                     + "подмножеств, максимально близкое к x (или само число x, если оно принадлежит"
                     .concat(System.lineSeparator())
                     + "пересечению подмножеств).");
-            double x = Double.valueOf(input.ask("Введите число Х: "));
+            double x = Double.valueOf(input.ask("Введите число Х. Если необходимо ввести +- бесконечность - введите +-infinity: "));
             aggregator.task(x);
             System.out.println();
         }
