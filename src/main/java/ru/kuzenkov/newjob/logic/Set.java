@@ -25,7 +25,7 @@ class Set {
     }
 
     TreeSet<Interval> getSet() {
-        return set;
+        return this.set;
     }
 
     /**
@@ -47,22 +47,17 @@ class Set {
      * Добавление нового интервала с проверкой на пересечение с уже существующими интервалами.
      * Если новый интервал пересекается с существующим в списке интервалом - добавления не произойдет.
      * @param newInterval Новый интервал.
-     * @return "true" если добавление произошло, или "false" если нет.
      */
-    boolean addNotCrossInterval(Interval newInterval) {
-        boolean result = false;
+    void addNotCrossInterval(Interval newInterval) {
         if (this.set.isEmpty()) {
             this.addInterval(newInterval);
-            result = true;
         } else {
             for (Interval interval : this.set) {
                 if (!interval.isCross(newInterval)) {
                     this.addInterval(newInterval);
-                    result = true;
-                }
+                } else throw new LogicException("Данный интервал пересекается с уже существующими в этом множестве.");
             }
         }
-        return result;
     }
 
     /**
@@ -86,7 +81,7 @@ class Set {
      * @param incomingSet Входящее множество.
      * @return "true" если множества пересекаются, или "false" если нет.
      */
-    boolean isCross(Set incomingSet) {
+    private boolean isCross(Set incomingSet) {
         boolean result = false;
         for (Interval interval : this.set) {
             for (Interval incomingInterval : incomingSet.getSet()) {

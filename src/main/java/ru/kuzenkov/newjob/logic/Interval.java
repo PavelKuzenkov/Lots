@@ -54,7 +54,7 @@ class Interval {
      * @param interval Входящий интервал.
      * @return "true" если включает, или "false" если нет.
      */
-    boolean isInclude(Interval interval) {
+    private boolean isInclude(Interval interval) {
         return this.a <= interval.getA() && interval.getB() <= this.b;
     }
 
@@ -63,7 +63,7 @@ class Interval {
      * @param interval Входящий интервал.
      * @return "true" если включает, или "false" если нет.
      */
-    boolean isPartOf(Interval interval) {
+    private boolean isPartOf(Interval interval) {
         return interval.getA() < this.a && this.b < interval.getB();
     }
 
@@ -85,7 +85,7 @@ class Interval {
      * 1 если с концом входящего интервала, 0 если входящий интервал полностью находится в исходном,
      * 2 если исходный интервал полностью находится во входящем -2 если интервалы не пересекаются.
      */
-    int howCross(Interval interval) {
+    private int howCross(Interval interval) {
         int result;
         if (!this.isCross(interval)) {
             return -2;
@@ -118,7 +118,9 @@ class Interval {
      */
     Interval cross(Interval interval) {
         Interval result = new Interval(0, 0);
-        if (this.isCross(interval)) {
+        if (!this.isCross(interval)) {
+            throw new LogicException("Интервалы не пересекаются.");
+        } else {
             if (this.isPartOf(interval)) {
                 result = this;
             } else if (this.isInclude(interval)) {
@@ -130,8 +132,6 @@ class Interval {
                 result.setA(this.a);
                 result.setB(interval.getB());
             }
-        } else {
-            System.out.println("Интервалы не пересекаются.");
         }
         return result;
     }

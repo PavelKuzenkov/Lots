@@ -141,7 +141,8 @@ public class SetListTest {
         setList.addSet(set2);
         setList.addSet(set3);
         setList.addSet(set4);
-        Interval result = setList.findNearestCrossToPoint(5);
+        Set setCross = setList.crossOfAllSets();
+        Interval result = setList.findNearestCrossToPoint(5, setCross);
         Interval expected = new Interval(0.0, 3.0);
         assertThat(result, is(expected));
     }
@@ -163,7 +164,8 @@ public class SetListTest {
         setList.addSet(set2);
         setList.addSet(set3);
         setList.addSet(set4);
-        double result = setList.findNearestPointToPoint(5);
+        Set setCross = setList.crossOfAllSets();
+        double result = setList.findNearestPointToPoint(5, setCross);
         double expected = 3;
         assertThat(result, is(expected));
     }
