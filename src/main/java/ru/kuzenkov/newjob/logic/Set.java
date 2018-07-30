@@ -55,7 +55,9 @@ class Set {
             for (Interval interval : this.set) {
                 if (!interval.isCross(newInterval)) {
                     this.addInterval(newInterval);
-                } else throw new LogicException("Данный интервал пересекается с уже существующими в этом множестве.");
+                } else {
+                    throw new LogicException("Данный интервал пересекается с уже существующими в этом множестве.");
+                }
             }
         }
     }

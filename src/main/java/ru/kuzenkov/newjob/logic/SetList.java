@@ -37,7 +37,7 @@ class SetList {
         if (this.sets.length != 0) {
             try {
                 this.sets[index - 1].addNotCrossInterval(interval);
-            } catch (LogicException lE){
+            } catch (LogicException lE) {
                 System.out.println("Данный интервал пересекается с уже существующими в этом множестве.");
             }
         } else {

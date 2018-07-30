@@ -52,12 +52,12 @@ public class Menu {
     }
 
     /**
-     * Заполнение массива дейтвиями.
+     * Дозаполнение массива дейтвиями.
      */
     public void fillAfter1Action() {
-        Exit exit = (Exit)Menu.this.actions.get(1);
+        Exit exit = (Exit) Menu.this.actions.get(1);
         Menu.this.actions.remove(1);
-        Menu.this.actions.add(new addNewIntervalToCurrentSet(Menu.this.actions.size(), "Добавить новый интервал в текущее множество."));
+        Menu.this.actions.add(new AddNewIntervalToCurrentSet(Menu.this.actions.size(), "Добавить новый интервал в текущее множество."));
         Menu.this.actions.add(Menu.this.actions.size(), new Exit(exit.getUi()));
         int[] range = new int[Menu.this.actions.size()];
         for (int index = 0; index != range.length; index++) {
@@ -67,12 +67,13 @@ public class Menu {
     }
 
     /**
-     * Заполнение массива дейтвиями.
+     * Дозаполнение массива дейтвиями.
      */
     public void fillAfter2Actions() {
-        Exit exit = (Exit)Menu.this.actions.get(2);
+        Exit exit = (Exit) Menu.this.actions.get(2);
         Menu.this.actions.remove(2);
-        Menu.this.actions.add(new crossOfAllSets(Menu.this.actions.size(), "Расчет пересечения всех множеств в списке."));
+        Menu.this.actions.add(new CrossOfAllSets(Menu.this.actions.size(), "Расчет пересечения всех множеств в списке."));
+        Menu.this.actions.add(new PointTask(Menu.this.actions.size(), "Ввести точку и определить ее отношение к пересечению множеств."));
         Menu.this.actions.add(Menu.this.actions.size(), new Exit(exit.getUi()));
         int[] range = new int[Menu.this.actions.size()];
         for (int index = 0; index != range.length; index++) {
@@ -101,23 +102,23 @@ public class Menu {
     }
 
     /**
-     * Внешний внутренний класс.
+     * Внутренний класс AddNewIntervalToCurrentSet. Отвечает за добавление нового интервала в текущее множество.
      */
-    class addNewIntervalToCurrentSet extends BaseAction {
+    class AddNewIntervalToCurrentSet extends BaseAction {
 
         /**
          * Конструктор класса.
          * @param key номер действия.
          * @param name описание действия.
          */
-        public addNewIntervalToCurrentSet(int key, String name) {
+        public AddNewIntervalToCurrentSet(int key, String name) {
             super(key, name);
         }
 
         /**
          * Реализация добавления нового интервала в текущее множество.
          * @param input ввод данных.
-         * @param aggregator хранилище заявок.
+         * @param aggregator список множеств.
          */
         public void execute(Input input, Aggregator aggregator) {
             System.out.println("---------- Добавление нового интервала в текущее множество -------------");
@@ -129,20 +130,28 @@ public class Menu {
     }
 
     /**
-     * Внутренний класс.
+     * Внутренний класс AddNewSet. Отвечает за добавление нового множества.
      */
     class AddNewSet extends BaseAction {
 
+        /**
+         * Количестов добавленных множеств.
+         */
         private int numberOfSet;
 
+        /**
+         * Конструктор класса.
+         * @param key номер действия.
+         * @param name описание действия.
+         */
         public AddNewSet(int key, String name) {
             super(key, name);
         }
 
         /**
-         * Реализация добавления заявки.
+         * Реализация добавления нового множества.
          * @param input ввод данных.
-         * @param aggregator хранилище заявок.
+         * @param aggregator список множеств.
          */
         public void execute(Input input, Aggregator aggregator) {
             System.out.println("------------ Добавлено новое множество --------------");
@@ -159,23 +168,23 @@ public class Menu {
     }
 
     /**
-     * Внутренний класс.
+     * Внутренний класс CrossOfAllSets. Отвечает за расчет пересечения всех множеств.
      */
-    class crossOfAllSets extends BaseAction {
+    class CrossOfAllSets extends BaseAction {
 
         /**
          * Конструктор класса.
          * @param key номер действия.
          * @param name описание действия.
          */
-        public crossOfAllSets(int key, String name) {
+        public CrossOfAllSets(int key, String name) {
             super(key, name);
         }
 
         /**
-         * Реализация вывода всех заявок на экран.
-         * @param input
-         * @param aggregator
+         * Реализация расчета пересечения всех множеств.
+         * @param input ввод данных.
+         * @param aggregator список множеств.
          */
         public void execute(Input input, Aggregator aggregator) {
             System.out.println("------------ Список пересечений всех множеств. --------------");
@@ -184,7 +193,7 @@ public class Menu {
     }
 
     /**
-     * Внутренний класс.
+     * Внутренний класс PointTask. Отвечает за выполнение задания с точкой.
      */
     class PointTask extends BaseAction {
 
@@ -200,10 +209,10 @@ public class Menu {
         /**
          * Реализация удаления заявки.
          * @param input ввод данных.
-         * @param aggregator хранилище заявок.
+         * @param aggregator список множеств.
          */
         public void execute(Input input, Aggregator aggregator) {
-            System.out.println("Для любого заданного числа x возвращать число, принадлежащее пересечению"
+            System.out.println("Для любого заданного числа x возвратится число, принадлежащее пересечению"
                     .concat(System.lineSeparator())
                     + "подмножеств, максимально близкое к x (или само число x, если оно принадлежит"
                     .concat(System.lineSeparator())
@@ -216,7 +225,7 @@ public class Menu {
 
 
     /**
-     * Внутренний класс.
+     * Внутренний класс Exit. Отвечает за выход из программы.
      */
     private class Exit implements UserAction {
 

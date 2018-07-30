@@ -122,22 +122,27 @@ public class IntervalTest {
         Interval interval2 = new Interval(2.0, 10.0);
         Interval interval3 = new Interval(5.0, 11.0);
         Interval interval4 = new Interval(1.0, 9.0);
-        Interval interval5 = new Interval(-1.0, -9.0);
         Interval result1 = interval.cross(interval1);
         Interval result2 = interval.cross(interval2);
         Interval result3 = interval.cross(interval3);
         Interval result4 = interval.cross(interval4);
-        Interval result5 = interval.cross(interval5);
         Interval expected1 = new Interval(3.0, 5.0);
         Interval expected2 = new Interval(2.0, 10.0);
         Interval expected3 = new Interval(5.0, 10.0);
         Interval expected4 = new Interval(2.0, 9.0);
-        Interval expected5 = new Interval(0, 0);
         assertThat(result1, is(expected1));
         assertThat(result2, is(expected2));
         assertThat(result3, is(expected3));
         assertThat(result4, is(expected4));
-        assertThat(result5, is(expected5));
     }
 
+    @Test(expected = LogicException.class)
+    public void notCross() {
+        Interval interval = new Interval(2.0, 10.0);
+        Interval interval5 = new Interval(-1.0, -9.0);
+        Interval result5 = interval.cross(interval5);
+        Interval expected5 = new Interval(0, 0);
+        assertThat(result5, is(expected5));
+
+    }
 }

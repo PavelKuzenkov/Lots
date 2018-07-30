@@ -1,7 +1,7 @@
 package ru.kuzenkov.newjob.menu;
 
 /**
- *  Class BaseAction.
+ * Class BaseAction.
  *
  * @author Кузенков Павел
  * @since 26.07.2018
