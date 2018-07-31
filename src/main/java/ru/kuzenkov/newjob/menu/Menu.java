@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @author Kuzenkov Pavel.
  * @since 26.07.2018
  */
-public class Menu {
+class Menu {
 
     /**
      * Получение данных от пользователя.
@@ -32,7 +32,7 @@ public class Menu {
      * @param input ввод данных.
      * @param aggregator Список множеств.
      */
-    public Menu(Input input, Aggregator aggregator) {
+    Menu(Input input, Aggregator aggregator) {
         this.input = input;
         this.aggregator = aggregator;
     }
@@ -41,7 +41,7 @@ public class Menu {
      * Заполнение массива дейтвиями.
      * @param ui
      */
-    public void fillActions(Start ui) {
+    void fillActions(Start ui) {
         this.actions.add(new AddNewSet(this.actions.size(), "Добавить новое множество."));
         this.actions.add(this.actions.size(), new Exit(ui));
         int[] range = new int[this.actions.size()];
@@ -54,7 +54,7 @@ public class Menu {
     /**
      * Дозаполнение массива дейтвиями.
      */
-    public void fillAfter1Action() {
+    private void fillAfter1Action() {
         Exit exit = (Exit) Menu.this.actions.get(1);
         Menu.this.actions.remove(1);
         Menu.this.actions.add(new AddNewIntervalToCurrentSet(Menu.this.actions.size(), "Добавить новый интервал в текущее множество."));
@@ -69,7 +69,7 @@ public class Menu {
     /**
      * Дозаполнение массива дейтвиями.
      */
-    public void fillAfter2Actions() {
+    private void fillAfter2Actions() {
         Exit exit = (Exit) Menu.this.actions.get(2);
         Menu.this.actions.remove(2);
         Menu.this.actions.add(new CrossOfAllSets(Menu.this.actions.size(), "Расчет пересечения всех множеств в списке."));
@@ -86,14 +86,14 @@ public class Menu {
      * Действие введенное пользователем.
      * @param key номер действия.
      */
-    public void select(int key) {
+    void select(int key) {
         this.actions.get(key).execute(this.input, this.aggregator);
     }
 
     /**
      * Вывод меню в консоль.
      */
-    public void show() {
+    void show() {
         for (UserAction action : this.actions) {
             if (action != null) {
                 System.out.println(action.info());
@@ -111,7 +111,7 @@ public class Menu {
          * @param key номер действия.
          * @param name описание действия.
          */
-        public AddNewIntervalToCurrentSet(int key, String name) {
+        AddNewIntervalToCurrentSet(int key, String name) {
             super(key, name);
         }
 
@@ -144,7 +144,7 @@ public class Menu {
          * @param key номер действия.
          * @param name описание действия.
          */
-        public AddNewSet(int key, String name) {
+        AddNewSet(int key, String name) {
             super(key, name);
         }
 
@@ -177,7 +177,7 @@ public class Menu {
          * @param key номер действия.
          * @param name описание действия.
          */
-        public CrossOfAllSets(int key, String name) {
+        CrossOfAllSets(int key, String name) {
             super(key, name);
         }
 
@@ -202,7 +202,7 @@ public class Menu {
          * @param key номер действия.
          * @param name описание действия.
          */
-        public PointTask(int key, String name) {
+        PointTask(int key, String name) {
             super(key, name);
         }
 
@@ -235,7 +235,7 @@ public class Menu {
             this.ui = ui;
         }
 
-        public Start getUi() {
+        Start getUi() {
             return ui;
         }
 

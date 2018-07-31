@@ -6,7 +6,7 @@ package ru.kuzenkov.newjob.menu;
  * @author Кузенков Павел
  * @since 26.07.2018
  */
-public abstract class BaseAction implements UserAction {
+abstract class BaseAction implements UserAction {
 
     /**
      * Номер действия.

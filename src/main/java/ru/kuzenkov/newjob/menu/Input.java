@@ -1,6 +1,6 @@
 package ru.kuzenkov.newjob.menu;
 
-public interface Input {
+interface Input {
 
     String ask(String question);
 

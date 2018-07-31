@@ -36,7 +36,7 @@ public class Start {
      * @param input ввод данных.
      * @param aggregator список множеств.
      */
-    public Start(Input input, Aggregator aggregator) {
+    private Start(Input input, Aggregator aggregator) {
         this.input = input;
         this.aggregator = aggregator;
         this.exit = false;
@@ -45,7 +45,7 @@ public class Start {
     /**
      * Основой цикл программы.
      */
-    public void init() {
+    private void init() {
         Menu menu = new Menu(this.input, this.aggregator);
         menu.fillActions(this);
         while (!this.exit) {
@@ -57,11 +57,11 @@ public class Start {
     /**
      * Выход из программы.
      */
-    public void exit() {
+    void exit() {
         this.exit = true;
     }
 
-    public void setRange(int[] range) {
+    void setRange(int[] range) {
         this.range = range;
     }
 

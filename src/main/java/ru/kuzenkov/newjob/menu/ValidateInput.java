@@ -6,7 +6,7 @@ package ru.kuzenkov.newjob.menu;
  * @author Кузенков Павел
  * @since 26.07.2018
  */
-public class ValidateInput implements Input {
+class ValidateInput implements Input {
 
     private final Input input;
 

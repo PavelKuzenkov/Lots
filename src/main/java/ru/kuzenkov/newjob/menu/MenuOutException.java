@@ -6,7 +6,7 @@ package ru.kuzenkov.newjob.menu;
  * @author Кузенков Павел
  * @since 26.07.2018
  */
-public class MenuOutException extends RuntimeException {
+class MenuOutException extends RuntimeException {
 
     /**
      * Принимаем сообщение об ошибке в конструктор и передаем

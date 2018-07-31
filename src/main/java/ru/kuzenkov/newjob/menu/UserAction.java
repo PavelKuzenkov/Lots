@@ -2,7 +2,7 @@ package ru.kuzenkov.newjob.menu;
 
 import ru.kuzenkov.newjob.logic.Aggregator;
 
-public interface UserAction {
+interface UserAction {
 
     int key();
 

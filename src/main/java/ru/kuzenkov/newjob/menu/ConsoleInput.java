@@ -9,7 +9,7 @@ import java.util.Scanner;
  * @since 25.07.2018
  */
 
-public class ConsoleInput implements Input {
+class ConsoleInput implements Input {
 
     private Scanner input = new Scanner(System.in);
 
