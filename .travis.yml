@@ -1,0 +1,12 @@
+language: java
+sudo: false
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  email:
+    recipients:
+      -paul_501@mail.ru
+    on_success: never # default: change
+    on_failure: always # default: always
