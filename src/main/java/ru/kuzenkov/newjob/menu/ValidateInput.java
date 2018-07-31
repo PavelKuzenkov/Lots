@@ -1,7 +1,7 @@
 package ru.kuzenkov.newjob.menu;
 
 /**
- * Class ValidateInput.
+ * Class ValidateInput. Для проверки корректности вводимых пользователем команд.
  *
  * @author Кузенков Павел
  * @since 26.07.2018
