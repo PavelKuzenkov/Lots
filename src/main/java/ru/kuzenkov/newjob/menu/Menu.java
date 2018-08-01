@@ -83,6 +83,23 @@ class Menu {
     }
 
     /**
+     * Дозаполнение массива дейтвиями.
+     */
+    private void fillAfter10Actions() {
+        Exit exit = (Exit) Menu.this.actions.get(4);
+        Menu.this.actions.clear();
+        Menu.this.actions.add(new AddNewIntervalToCurrentSet(Menu.this.actions.size(), "Добавить новый интервал в текущее множество."));
+        Menu.this.actions.add(new CrossOfAllSets(Menu.this.actions.size(), "Расчет пересечения всех множеств в списке."));
+        Menu.this.actions.add(new PointTask(Menu.this.actions.size(), "Ввести точку и определить ее отношение к пересечению множеств."));
+        Menu.this.actions.add(Menu.this.actions.size(), new Exit(exit.getUi()));
+        int[] range = new int[Menu.this.actions.size()];
+        for (int index = 0; index != range.length; index++) {
+            range[index] = index;
+        }
+        exit.getUi().setRange(range);
+    }
+
+    /**
      * Действие введенное пользователем.
      * @param key номер действия.
      */
@@ -163,6 +180,9 @@ class Menu {
             }
             if (this.numberOfSet == 2) {
                 Menu.this.fillAfter2Actions();
+            }
+            if (this.numberOfSet == 10) {
+                Menu.this.fillAfter10Actions();
             }
         }
     }

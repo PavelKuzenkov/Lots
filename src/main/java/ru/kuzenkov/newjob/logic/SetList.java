@@ -23,8 +23,12 @@ class SetList {
      * @param newSet Новое множество.
      */
     void addSet(Set newSet) {
-        newSet.setIndex(this.index + 1);
-        this.sets[index++] = newSet;
+        if (this.index < 10) {
+            newSet.setIndex(this.index + 1);
+            this.sets[index++] = newSet;
+        } else {
+            System.out.println("Достигнуто максимальное количество множеств.");
+        }
     }
 
     /**
@@ -118,9 +122,21 @@ class SetList {
      * @return "-1" если первый ближе. "1" если второй ближе. "0" если расстояния одинаковы.
      */
     int whoIsCloser(Interval i1, Interval i2, double point) {
-        double distanceI1 = this.whichPointIsCloser(i1, point);
-        double distanceI2 = this.whichPointIsCloser(i2, point);
+        double distanceI1 = this.distanceIntervalToPoint(i1, point);
+        double distanceI2 = this.distanceIntervalToPoint(i2, point);
         return Double.compare(distanceI1, distanceI2);
+    }
+
+    /**
+     * Вычисляем дистанцию от интервала до точки.
+     * @param interval интервал.
+     * @param point точка.
+     * @return дистанция от интервала до точки.
+     */
+    double distanceIntervalToPoint(Interval interval, double point) {
+        double distanceA = Math.abs(interval.getA() - point);
+        double distanceB = Math.abs(interval.getB() - point);
+        return distanceA < distanceB ? distanceA : distanceB;
     }
 
     /**
@@ -131,10 +147,14 @@ class SetList {
      * @return Ближайший к точке интервал.
      */
     Interval whichIntervalIsCloser(Interval i1, Interval i2, double point) {
-        if (this.whoIsCloser(i1, i2, point) == -1) {
-            return i1;
+        if (i1 != null && i2 != null) {
+            if (this.whoIsCloser(i1, i2, point) == -1) {
+                return i1;
+            } else {
+                return i2;
+            }
         } else {
-            return i2;
+            return i1 == null ? i2 : i1;
         }
     }
 

@@ -1,6 +1,6 @@
 package ru.kuzenkov.newjob.logic;
 
-import java.util.TreeSet;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 /**
  * Class Set. Абстракция множества.
@@ -13,7 +13,7 @@ class Set {
     /**
      * Множество интервалов.
      */
-    private TreeSet<Interval> set = new TreeSet<Interval>(new Sort());
+    private ConcurrentSkipListSet<Interval> set = new ConcurrentSkipListSet<Interval>(new Sort());
 
     /**
      * Порядковый номер множества.
@@ -24,7 +24,7 @@ class Set {
         this.index = index;
     }
 
-    TreeSet<Interval> getSet() {
+    ConcurrentSkipListSet<Interval> getSet() {
         return this.set;
     }
 

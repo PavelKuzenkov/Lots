@@ -170,4 +170,34 @@ public class SetListTest {
         assertThat(result, is(expected));
     }
 
+    @Test
+    public void findNearestPointFromCrossToPoint() {
+        Set set1 = new Set();
+        Set set2 = new Set();
+        set1.addNotCrossInterval(new Interval(1, 4));
+        set1.addNotCrossInterval(new Interval(7, 10));
+        set2.addNotCrossInterval(new Interval(0, 10));
+        SetList setList = new SetList();
+        setList.addSet(set1);
+        setList.addSet(set2);
+//        Set setCross = setList.crossOfAllSets();
+        double result = setList.task(6);
+        double expected = 7;
+        assertThat(result, is(expected));
+    }
+
+    @Test
+    public void task() {
+        Set set1 = new Set();
+        Set set2 = new Set();
+        set1.addNotCrossInterval(new Interval(3, 5));
+        set2.addNotCrossInterval(new Interval(4, 7));
+        SetList setList = new SetList();
+        setList.addSet(set1);
+        setList.addSet(set2);
+        double result = setList.task(1);
+        double expected = 4;
+        assertThat(result, is(expected));
+    }
+
 }

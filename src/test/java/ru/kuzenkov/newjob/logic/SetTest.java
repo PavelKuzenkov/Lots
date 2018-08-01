@@ -23,15 +23,45 @@ public class SetTest {
         assertThat(result2, is(expected2));
     }
 
-//    @Test
-//    public void addInterval() {
-//        Set set = new Set();
-//        Interval interval = new Interval(-10.0, 30.0);
-//        set.addInterval(interval);
-//        boolean result = set.getSet().contains(interval);
-//        boolean expected = true;
-//        assertThat(result, is(expected));
-//    }
+    @Test
+    public void addInterval() {
+        Set set = new Set();
+        Interval interval = new Interval(-10.0, 30.0);
+        Interval interval2 = new Interval(-120.0, -30.0);
+        Interval interval3 = new Interval(100.0, 50.0);
+        Interval interval4 = new Interval(Double.NEGATIVE_INFINITY, -5000.0);
+        Interval interval5 = new Interval(31.0, 35.0);
+        Interval interval6 = new Interval(-11.0, -20.0);
+        Interval interval7 = new Interval(320, Double.POSITIVE_INFINITY);
+        set.addInterval(interval);
+        set.addInterval(interval2);
+        set.addInterval(interval3);
+        set.addInterval(interval4);
+        set.addInterval(interval5);
+        set.addInterval(interval6);
+        set.addInterval(interval7);
+        boolean result = set.getSet().contains(interval);
+        boolean result2 = set.getSet().contains(interval2);
+        boolean result3 = set.getSet().contains(interval3);
+        boolean result4 = set.getSet().contains(interval4);
+        boolean result5 = set.getSet().contains(interval5);
+        boolean result6 = set.getSet().contains(interval6);
+        boolean result7 = set.getSet().contains(interval7);
+        boolean expected = true;
+        boolean expected2 = true;
+        boolean expected3 = true;
+        boolean expected4 = true;
+        boolean expected5 = true;
+        boolean expected6 = true;
+        boolean expected7 = true;
+        assertThat(result, is(expected));
+        assertThat(result2, is(expected2));
+        assertThat(result3, is(expected3));
+        assertThat(result4, is(expected4));
+        assertThat(result5, is(expected5));
+        assertThat(result6, is(expected6));
+        assertThat(result7, is(expected7));
+    }
 
     @Test
     public void addNotCrossInterval() {
